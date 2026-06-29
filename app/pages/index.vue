@@ -34,7 +34,7 @@ const nextPage = () => {
 </script>
 
 <template>
-  <div class="pb-16 w-full bg-neutral-100">
+  <div class="pb-16 w-full bg-green-500">
     <div class="relative flex justify-center">
       <div class="w-xl mt-12 flex flex-col">
         <div class="flex w-full justify-center flex-wrap p-5">

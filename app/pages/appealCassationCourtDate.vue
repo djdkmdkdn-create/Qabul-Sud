@@ -24,6 +24,8 @@ const nextPage = () => {
 };
 </script>
 <template>
+  <!-- page 4 -->
+  
   <div class="pb-16 w-full bg-neutral-100">
     <div class="relative flex justify-center">
       <div class="w-xl mt-12 flex flex-col">
@@ -122,6 +124,7 @@ const nextPage = () => {
               >
               <div class="inline-block relative w-full">
                 <select
+                :disabled="!useAppealDate.selectedRegion"
                   v-model="useAppealDate.selectedSud"
                   class="block appearance-none w-full bg-white text-neutral-800 rounded border-2 border-neutral-200 hover:border-neutral-300 px-4 py-2 pr-8 leading-tight focus:outline-none"
                 >

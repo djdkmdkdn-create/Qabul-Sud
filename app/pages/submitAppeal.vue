@@ -1,9 +1,11 @@
 <script setup>
+import { receptionInfo } from '~/store/ReceptionInfo';
+
 const description = ref("");
 const files = ref([]);
 const toast = useToast();
 const disabled = ref(false);
-
+const succes=ref(false)
 const handleFile = (e) => {
   const selectedFiles = Array.from(e.target.files);
 
@@ -27,7 +29,7 @@ const handleFile = (e) => {
 
   files.value = selectedFiles;
 };
-
+const useReceptionInfo=receptionInfo()
 const finish = () => {
   if (!description.value.trim() || files.value.length === 0) {
     disabled.value = true;
@@ -41,13 +43,99 @@ const finish = () => {
         "Барча майдонларни тўлдиринг ва файл бириктиринг!",
     });
   }
-  toast.success({message:'Сиз томонингиздан киритилган маълумотлар Ўзбекистон Республикаси Олий судига электрон мурожаат сифатида юборилади. Нотўғри ёки тўлиқ бўлмаган маълумотлар мурожаатни кўриб чиқиш жараёнига таъсир қилиши мумкин.'})  
-  navigateTo("/");
+    succes.value=true  
 };
 </script>
 
 <template>
+  <!-- page 6 -->
+
   <div class="pb-16 w-full bg-neutral-100">
+    
+      <Transition name="modal">
+  <div
+    v-if="succes"
+    class="fixed top-0 left-0 z-10 flex h-screen w-full items-center justify-center backdrop-blur-sm"
+  >
+    <div
+      class="rounded-2xl border border-green-200 bg-linear-to-br from-green-50 to-white p-8 shadow-lg"
+    >
+   <div class="flex flex-col items-center text-center">
+    <div
+      class="flex h-20 w-20 items-center justify-center rounded-full bg-green-100"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-10 w-10 text-green-600"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M5 13l4 4L19 7"
+        />
+      </svg>
+    </div>
+
+    <h2 class="mt-6 text-3xl font-bold text-green-700">
+      Мурожаат муваффақиятли юборилди
+    </h2>
+
+    <p class="mt-4 max-w-xl text-neutral-600 leading-7">
+      Сизнинг мурожаатингиз қабул қилинди ва белгиланган тартибда
+      кўриб чиқиш учун юборилди.
+    </p>
+
+    <div
+      class="mt-8 w-full rounded-xl border border-neutral-200 bg-white p-5"
+    >
+      <div
+        class="flex flex-col gap-3 sm:flex-row sm:justify-between"
+      >
+        <span class="text-neutral-500">
+          Мурожаат ҳолати
+        </span>
+
+        <span
+          class="font-semibold text-green-600"
+        >
+          ✓ Қабул қилинди
+        </span>
+      </div>
+
+      <div
+        class="mt-4 flex flex-col gap-3 sm:flex-row sm:justify-between"
+      >
+        <span class="text-neutral-500">
+          Юборилган сана
+        </span>
+
+        <span class="font-semibold">
+          {{ new Date().toLocaleString('uz-UZ') }}
+        </span>
+      </div>
+    </div>
+
+    <div
+      class="mt-8 rounded-xl bg-blue-50 border border-blue-100 p-4 text-blue-700"
+    >
+      Илтимос, мурожаатингиз кўриб чиқилиши учун маълум вақт кутинг.
+      Зарур ҳолларда сиз билан қўшимча боғланилади.
+    </div>
+
+    <button
+      @click="navigateTo('/')"
+      class="mt-8 rounded-xl bg-blue-500 px-8 py-3 font-semibold text-white duration-200 hover:bg-blue-600"
+    >
+      Бош саҳифага қайтиш
+    </button>
+  </div>
+    </div>
+  </div>
+</Transition>
     <div class="relative flex justify-center">
       <div class="w-xl mt-12 flex flex-col">
         <div class="flex w-full justify-center flex-wrap p-5">
@@ -101,6 +189,7 @@ const finish = () => {
               class="select-none w-10 h-10 flex text-neutral-400 border-2 border-blue-400 rounded-full justify-center items-center"
             >
               6
+              
             </div>
           </div>
         </div>
@@ -185,3 +274,33 @@ const finish = () => {
     </div>
   </div>
 </template>
+<style scoped>
+
+.modal-enter-active,
+.modal-leave-active {
+  transition: all 0.35s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.modal-enter-to,
+.modal-leave-from {
+  opacity: 1;
+  transform: scale(1);
+}
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+}
+
+.modal-enter-to,
+.modal-leave-from {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+</style>

@@ -1,6 +1,4 @@
-<script>
-
-</script>
+<script></script>
 <template>
   <nav
     class="flex bg-white shadow-md flex-col border-t-4 border-t-blue-700 relative flex-no-wrap"
@@ -8,7 +6,7 @@
     <div class="h-1 w-full bg-primary-600"></div>
     <div class="flex w-full px-5 items-center flex-wrap">
       <div class="flex flex-no-wrap w-full">
-        <a href="#/">
+        <NuxtLink to="/">
           <div
             class="text-primary-600 text-xl font-bold m-4 flex justify-center items-center"
           >
@@ -22,8 +20,8 @@
               </svg>
             </div>
             <span class="text-blue-700 xs:inline-block">Суд қабули</span>
-          </div></a
-        >
+          </div>
+        </NuxtLink>
         <div
           class="ml-auto cursor-pointer text-primary-600 text-xl font-bold m-4 flex justify-center items-center"
         >
@@ -38,7 +36,6 @@
             </svg>
           </div>
           <span class="text-neutral-700 text-base -ml-4">ЎЗ</span>
-          
         </div>
       </div>
       <div class="w-full flex flex-col items-center select-none">
